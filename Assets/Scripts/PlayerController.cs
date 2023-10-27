@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         isOnGround = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
 
