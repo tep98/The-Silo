@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private Animator cameraAnim;
+
     private bool isOnGround;
  
     Vector3 velocity;
@@ -32,6 +34,15 @@ public class PlayerController : MonoBehaviour
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+
+        if (horizontalInput!=0 || verticalInput != 0)
+        {
+            cameraAnim.SetBool("isRun", true);
+        }
+        else
+        {
+            cameraAnim.SetBool("isRun", false);
+        }
 
         Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
 
