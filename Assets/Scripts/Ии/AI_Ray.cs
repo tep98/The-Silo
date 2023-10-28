@@ -8,16 +8,13 @@ public class AI_Ray : MonoBehaviour {
 
 
 
-	void Start () {
+	private void Start () {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         NMA = (UnityEngine.AI.NavMeshAgent)this.GetComponent("NavMeshAgent");
 	}
 	
 	
-	void Update () {
+	private void FixedUpdate () {
         NMA.SetDestination(Player.position);
-
-    
-
 	}
 }
