@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private AudioSource stepsSound;
+    private bool isStepsPlay = false;
+
     [SerializeField] private Animator cameraAnim;
 
     private bool isOnGround;
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+
     }
 
     private void Update()
@@ -38,10 +42,18 @@ public class PlayerController : MonoBehaviour
         if (horizontalInput!=0 || verticalInput != 0)
         {
             cameraAnim.SetBool("isRun", true);
+            if (isStepsPlay)
+            {
+                stepsSound.Stop();
+            }
         }
         else
         {
             cameraAnim.SetBool("isRun", false);
+            if (!isStepsPlay)
+            {
+                stepsSound.Play();
+            }
         }
 
         Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
