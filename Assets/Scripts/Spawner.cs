@@ -48,25 +48,15 @@ public class Spawner : MonoBehaviour
 
             Instantiate(enemyPrefab[rand], spawnPoint[randPosition].transform.position, Quaternion.identity);
         }
-
+        enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
         iterationCounter = 0;
     }
 
     public void CatchPlayer()
-    {
+    {    
         Debug.Log("He is catched!");
         player.SetActive(false);
         cutScene.SetActive(true);
-        CutsceneManager.Instance.StartCutscene("DeadAnimation");
-
-
-        enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject one in enemyObjects)
-        {
-            Destroy(one);
-        }
-    }
-
-    
+        CutsceneManager.Instance.StartCutscene("DeadAnimation");   
+    }  
 }
