@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardPickup : MonoBehaviour
 {
     private bool playerNearby = false;
+    [SerializeField] private GameObject playerCard;
 
     private void Update()
     {
@@ -32,7 +33,6 @@ public class CardPickup : MonoBehaviour
 
     private void PickUpCard()
     {
-        GameObject playerCard = GameObject.FindWithTag("PlayerCard");
         if (playerCard)
         {
             playerCard.SetActive(true);
