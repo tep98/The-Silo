@@ -7,13 +7,18 @@ public class CanvasRotate : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject Camera;
-    private float detectionRadius = 10f;
+    [SerializeField] private float detectionRadius = 10f;
+    [SerializeField] private bool isText = false;
     private Transform playerTransform;
 
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        canvas.SetActive(false);
+        if (!isText)
+        {
+            canvas.SetActive(false);
+        }
+       
     }
 
     private void Update()
@@ -28,7 +33,10 @@ public class CanvasRotate : MonoBehaviour
         }
         else
         {
-            canvas.SetActive(false);
+            if (!isText)
+            {
+                canvas.SetActive(false);
+            }
         }
     }
 }
