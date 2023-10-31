@@ -7,6 +7,7 @@ public class MenuButtonAction : MonoBehaviour
 {
     [SerializeField] private Animator cameraAnim;
     [SerializeField] private GameObject settingMenu;
+
     public void Play()
     {
         SceneManager.LoadScene("MainScene");

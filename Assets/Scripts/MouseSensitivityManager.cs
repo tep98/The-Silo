@@ -7,22 +7,34 @@ public class MouseSensitivityManager : MonoBehaviour
 {
     [SerializeField] private Slider sensitivitySlider;
 
-    private const string sensitivityKey = "mouseSensitivity";
-    private const float defaultSensitivity = 20f;
-
     private void Start()
     {
-        sensitivitySlider.value = PlayerPrefs.GetFloat(sensitivityKey, defaultSensitivity);
+        if (!PlayerPrefs.HasKey("mouseSensitivity"))
+        {
+            PlayerPrefs.SetFloat("mouseSensitivity", 50f);
+            Load();
+        }
+        else
+        {
+            Load();
+        }
     }
 
     public void ChangeSensitivity()
     {
-        float sensitivity = sensitivitySlider.value;
-        PlayerPrefs.SetFloat(sensitivityKey, sensitivity);
+        CameraController.globalSensitivity = sensitivitySlider.value;
+        Save();
     }
 
-    public static float GetSavedSensitivity()
+    private void Load()
     {
-        return PlayerPrefs.GetFloat(sensitivityKey, defaultSensitivity);
+        sensitivitySlider.value = PlayerPrefs.GetFloat("mouseSensitivity");
+        CameraController.globalSensitivity = sensitivitySlider.value;
+    }
+
+    private void Save()
+    {
+        PlayerPrefs.SetFloat("mouseSensitivity", sensitivitySlider.value);
     }
 }
+
