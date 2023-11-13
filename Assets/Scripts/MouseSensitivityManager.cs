@@ -11,7 +11,7 @@ public class MouseSensitivityManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("mouseSensitivity"))
         {
-            PlayerPrefs.SetFloat("mouseSensitivity", 50f);
+            PlayerPrefs.SetFloat("mouseSensitivity", 20f);
             Load();
         }
         else
