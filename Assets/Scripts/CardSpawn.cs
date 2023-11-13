@@ -10,6 +10,6 @@ public class CardSpawn : MonoBehaviour
     private void Start()
     {
         rand = Random.Range(0, spawnPoint.Length);
-        levelcard.transform.position = spawnPoint[rand].transform.position;
+        Instantiate(levelcard, spawnPoint[rand].transform.position, Quaternion.identity);
     }
 }
