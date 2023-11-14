@@ -5,8 +5,19 @@ using UnityEngine;
 public class SaveSpawnpoints : MonoBehaviour
 {
     [SerializeField] private int index;
+    [SerializeField] private GameObject spawnPointObj;
+    private AdRestart adRestart;
+
+    private void Start()
+    {
+        adRestart = spawnPointObj.GetComponent<AdRestart>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        AdRestart.GetPoint(index)
+        if (other.gameObject.CompareTag("Player"))
+        {
+            adRestart.GetPoint(index);
+        }
     }
 }
