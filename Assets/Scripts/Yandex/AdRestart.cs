@@ -46,4 +46,9 @@ public class AdRestart : MonoBehaviour
     {
         player.transform.position = playerSpawnPoints[spawnIndex].transform.position;
     }
+
+    public void GoToStart()
+    {
+        player.transform.position = playerSpawnPoints[0].transform.position;
+    }
 }
