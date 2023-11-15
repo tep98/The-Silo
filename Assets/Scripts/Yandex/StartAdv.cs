@@ -8,10 +8,14 @@ public class StartAdv : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void StartAdBanner();
 
+    [DllImport("__Internal")]
+    private static extern void StartGame();
+
     [SerializeField] private AudioSource music;
      
     private void Start()
     {
+        StartGame();
         StartAdBanner();
         Time.timeScale = 0;
         music.volume = 0f;
