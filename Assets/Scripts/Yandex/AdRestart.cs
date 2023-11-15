@@ -44,11 +44,21 @@ public class AdRestart : MonoBehaviour
 
     private void Spawn()
     {
+        sif (spawnIndex==1 || spawnIndex==6 || spawnIndex==11)
+        {
+            Progress.Instance.PlayerInfo.Level = spawnIndex;
+            Progress.Instance.Save();
+        }
         player.transform.position = playerSpawnPoints[spawnIndex].transform.position;
     }
 
     public void GoToStart()
     {
+        if (spawnIndex==1 || spawnIndex==6 || spawnIndex==11)
+        {
+            Progress.Instance.PlayerInfo.Level = spawnIndex;
+            Progress.Instance.Save();
+        }
         player.transform.position = playerSpawnPoints[0].transform.position;
     }
 }

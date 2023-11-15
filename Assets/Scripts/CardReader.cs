@@ -17,7 +17,6 @@ public class CardReader : MonoBehaviour
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
         distanceX = gameObject.GetComponent<Transform>().position.x - player.position.x;
         distanceY = gameObject.GetComponent<Transform>().position.y - player.position.y;
