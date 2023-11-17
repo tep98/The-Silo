@@ -23,33 +23,40 @@ public class Spawner : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject one in enemyObjects)
+        if (other.CompareTag("Player"))
         {
-            Destroy(one);
+            enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject one in enemyObjects)
+            {
+                Destroy(one);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        while (iterationCounter < lotOfEnemy)
+        if (other.CompareTag("Player"))
         {
-            rand = Random.Range(0, enemyPrefab.Length);
-            randPosition = Random.Range(0, spawnPoint.Length);
-
-            if (previousRandPositions.Contains(randPosition))
+            while (iterationCounter < lotOfEnemy)
             {
-                continue;
+                rand = Random.Range(0, enemyPrefab.Length);
+                randPosition = Random.Range(0, spawnPoint.Length);
+
+                if (previousRandPositions.Contains(randPosition))
+                {
+                    continue;
+                }
+
+                previousRandPositions[iterationCounter] = randPosition;
+                iterationCounter++;
+
+                Instantiate(enemyPrefab[rand], spawnPoint[randPosition].transform.position, Quaternion.identity);
             }
-
-            previousRandPositions[iterationCounter] = randPosition;
-            iterationCounter++;
-
-            Instantiate(enemyPrefab[rand], spawnPoint[randPosition].transform.position, Quaternion.identity);
+            enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
+            iterationCounter = 0;
         }
-        enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
-        iterationCounter = 0;
+        
     }
 
     public void CatchPlayer()
@@ -60,3 +67,4 @@ public class Spawner : MonoBehaviour
         CutsceneManager.Instance.StartCutscene("DeadAnimation");   
     }  
 }
+
